@@ -1,0 +1,27 @@
+# Python (feed)
+__pycache__/
+*.pyc
+.venv/
+feed/.venv/
+
+# Node (web)
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Env & secrets
+.env
+.env.local
+.env.production
+*.env
+*.pem
+feed/vapid_private.pem
+
+
+# OS / editor
+.DS_Store
+
+# Script dev (log + pid)
+.dev/

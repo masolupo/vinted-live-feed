@@ -1,0 +1,42 @@
+.section {
+  border-bottom: 1px solid var(--border);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.arrow {
+  color: var(--text-muted);
+  font-size: 16px;
+  width: 14px;
+  text-align: center;
+}
+
+.body {
+  padding: 4px 4px 16px;
+}

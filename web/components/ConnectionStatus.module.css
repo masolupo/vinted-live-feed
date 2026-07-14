@@ -1,0 +1,41 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.connecting {
+  background: #e0a82e;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.open {
+  background: #2ecc71;
+}
+
+.closed {
+  background: #e05a5a;
+}
+
+.paused {
+  background: #8a8f98;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

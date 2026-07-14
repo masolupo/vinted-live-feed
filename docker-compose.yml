@@ -1,0 +1,46 @@
+# docker-compose.yml — LOCAL setup. A single command:
+#
+#     docker compose up --build
+#
+# Then open http://localhost:3000  (the feed API runs on http://localhost:5000).
+#
+# Initial config — copy the two env files and fill them in:
+#     cp .env.example .env             # Supabase keys + shared secrets (web side)
+#     cp feed/.env.example feed/.env   # proxies, CapSolver, DB + the SAME shared secrets
+#
+# Supabase is needed for login. Proxies + a CapSolver key are needed for the real
+# Vinted actions (feed enrichment / fastbuy); you bring your own (BYOP).
+
+services:
+  feed:
+    build: ./feed
+    restart: unless-stopped
+    env_file: ./feed/.env
+    ports:
+      - "5000:5000"
+
+  web:
+    build:
+      context: ./web
+      args:
+        # Browser-side URLs → localhost (inlined into the bundle at build time).
+        NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+        NEXT_PUBLIC_FEED_API_URL: "http://localhost:5000"
+        NEXT_PUBLIC_FEED_WS_URL: "ws://localhost:5000/ws"
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}
+    restart: unless-stopped
+    environment:
+      # Next server runtime secrets (from the root .env).
+      NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}
+      SUPABASE_SECRET_KEY: ${SUPABASE_SECRET_KEY}
+      FEED_INTERNAL_SECRET: ${FEED_INTERNAL_SECRET}
+      FEED_TICKET_SECRET: ${FEED_TICKET_SECRET}
+      # The feed is reachable only on the internal docker network.
+      FEED_INTERNAL_URL: http://feed:5000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - feed

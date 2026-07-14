@@ -1,0 +1,50 @@
+.statusRow {
+  margin-bottom: 16px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.connected {
+  color: #3ddc84;
+  border-color: #3ddc84;
+}
+
+.expired {
+  color: #ffb020;
+  border-color: #ffb020;
+}
+
+.none {
+  color: var(--text-muted);
+}
+
+.actions {
+  margin-top: 16px;
+}
+
+.back {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.toggle input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}

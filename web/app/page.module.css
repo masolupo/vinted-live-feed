@@ -1,0 +1,383 @@
+/* The landing scrolls in its own container: the global body has
+   overflow:hidden (needed by the feed), so we reclaim it here. */
+.page {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: rgba(15, 17, 21, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--accent), #4fe3d0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navLink {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  color: var(--text);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btnPrimary,
+.btnPrimaryLg,
+.btnGhostLg {
+  display: inline-block;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.btnPrimary {
+  padding: 8px 16px;
+  font-size: 14px;
+  background: var(--accent);
+  color: #04282a;
+}
+
+.btnPrimaryLg {
+  padding: 13px 26px;
+  font-size: 15px;
+  background: var(--accent);
+  color: #04282a;
+  box-shadow: 0 8px 30px rgba(9, 177, 186, 0.25);
+}
+
+.btnPrimary:hover,
+.btnPrimaryLg:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btnGhostLg {
+  padding: 13px 26px;
+  font-size: 15px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btnGhostLg:hover {
+  border-color: var(--accent);
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+.hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 24px 64px;
+  text-align: center;
+  /* Teal background glow. */
+  background:
+    radial-gradient(60% 60% at 50% 0%, rgba(9, 177, 186, 0.14), transparent 70%);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(9, 177, 186, 0.12);
+  border: 1px solid rgba(9, 177, 186, 0.3);
+}
+
+.h1 {
+  margin: 20px 0 0;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.lead {
+  margin: 20px auto 0;
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.heroCtas {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.trust {
+  margin-top: 28px;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ── Generic sections ────────────────────────────────────────────────────── */
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+.h2 {
+  margin: 0 0 36px;
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.cardTitle {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.cardText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ── How it works ────────────────────────────────────────────────────────── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.step {
+  padding: 28px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.stepNum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  font-weight: 800;
+  color: #04282a;
+  background: var(--accent);
+}
+
+/* ── Features ────────────────────────────────────────────────────────────── */
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.feature {
+  padding: 26px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.feature:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.featureIcon {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+/* ── Pricing ─────────────────────────────────────────────────────────────── */
+.pricing {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 36px 32px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(9, 177, 186, 0.12);
+}
+
+.priceBadge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #04282a;
+  background: var(--accent);
+}
+
+.priceText {
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.priceText strong {
+  color: var(--text);
+}
+
+.priceList {
+  list-style: none;
+  margin: 22px 0 26px;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.priceList li {
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* ── FAQ ─────────────────────────────────────────────────────────────────── */
+.faq {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faqItem {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 18px;
+}
+
+.faqItem[open] {
+  border-color: var(--accent);
+}
+
+.faqQ {
+  cursor: pointer;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 600;
+  list-style: none;
+}
+
+.faqQ::-webkit-details-marker {
+  display: none;
+}
+
+.faqQ::after {
+  content: '+';
+  float: right;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.faqItem[open] .faqQ::after {
+  content: '−';
+}
+
+.faqA {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ── Final CTA ───────────────────────────────────────────────────────────── */
+.finalCta {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  text-align: center;
+}
+
+.finalCta .h2 {
+  margin-bottom: 24px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 24px 48px;
+  text-align: center;
+}
+
+.footNote {
+  max-width: 460px;
+  margin: 12px auto 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.footLinks {
+  margin-top: 16px;
+}
+
+.copy {
+  margin: 16px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .steps,
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    scroll-behavior: auto;
+  }
+}

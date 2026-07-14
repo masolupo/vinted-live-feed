@@ -1,0 +1,12 @@
+# Dependencies for the feed engine only.
+# Full pin to be generated with `pip freeze` after installing in the vlf venv.
+fastapi
+uvicorn
+curl_cffi
+python-dotenv
+websockets
+# Vinted purchase (session.py / test_buy.py): HTTP client for CapSolver.
+httpx
+# Link Vinted account: Postgres DB (proxy_pool/vinted_sessions) + token encryption.
+asyncpg
+cryptography

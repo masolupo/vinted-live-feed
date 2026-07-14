@@ -1,0 +1,73 @@
+:root {
+  /* Colors */
+  --bg: #0f1115;
+  --surface: #181b22;
+  --surface-2: #20242e;
+  --border: #2a2f3a;
+  --text: #e7e9ee;
+  --text-muted: #9aa3b2;
+  --accent: #09b1ba; /* teal Vinted-like */
+  --accent-contrast: #04282a;
+
+  /* Spacing and radii */
+  --radius: 10px;
+  --gap: 16px;
+
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* The page doesn't scroll: the card area scrolls instead (see .scrollArea). */
+  overflow: hidden;
+  /* Disable native scroll-anchoring: we handle the anti-jump manually in
+     useFeed, otherwise the two mechanisms stack up and the page "jumps". */
+  overflow-anchor: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Reusable "pretty" scrollbar (global class). */
+.prettyScroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.prettyScroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.prettyScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prettyScroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.prettyScroll::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+  background-clip: padding-box;
+}

@@ -1,0 +1,261 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  /* NB: no content-visibility. It estimated the height of off-screen cards
+     (which caused the anti-jump micro-drift, absent in the old vba). The cards
+     have a uniform, real height → the anti-jump is exact. If we ever need
+     perf on huge lists, virtualize (not content-visibility). */
+}
+
+/* NEW cards enter with a fade: the "existing ones slide down" motion comes from
+   the smooth scroll in useFeed, so here a simple veil is enough to soften them. */
+.cardIn {
+  animation: cardIn 500ms ease-out;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardIn {
+    animation: none;
+  }
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.photoBtn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.noPhoto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* Row of little squares below the photo. Height always reserved (even when empty),
+   so all cards stay the same. */
+.thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 8px 8px 0;
+}
+
+/* Square slots: they fill the width in equal parts, square-shaped,
+   with a max cap so they don't get huge on wide cards. */
+.thumb,
+.thumbSlot {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 120px;
+  aspect-ratio: 1;
+  border-radius: 8px;
+}
+
+.thumbSlot {
+  /* Invisible empty slot: it only serves to reserve the space. */
+  visibility: hidden;
+}
+
+.thumb {
+  position: relative;
+  padding: 0;
+  border: 2px solid transparent;
+  overflow: hidden;
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.more {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  /* Always reserve 2 lines, so all cards have the same height. */
+  min-height: calc(1.3em * 2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--accent);
+  /* Reserve the line even when the price is missing, so the height stays fixed. */
+  min-height: calc(1.3em);
+}
+
+.meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 2px;
+  /* Only one line reserved: excess chips are hidden, no jumps. */
+  min-height: 24px;
+  overflow: hidden;
+}
+
+/* ── Fastbuy ─────────────────────────────────────────────────────────────── */
+.buy {
+  padding: 0 12px 12px;
+  box-sizing: border-box;
+  /* Reserved height of the button (at rest), so all cards are the same
+     even when the area is empty (e.g. item with no seller). */
+  min-height: 45px;
+}
+
+.buyBtn {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buyBtn:hover {
+  filter: brightness(1.08);
+}
+
+.buyBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.buyConfirm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.buyAsk {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.buyActions {
+  display: flex;
+  gap: 6px;
+}
+
+.buyYes,
+.buyNo {
+  flex: 1;
+  padding: 7px 8px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+
+.buyYes {
+  background: #3ddc84;
+  border-color: #3ddc84;
+  color: #03301a;
+}
+
+.buyNo {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.buyOk {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3ddc84;
+  text-align: center;
+}
+
+.buyErr {
+  font-size: 12px;
+  color: #ff6b6b;
+}
+
+.buyHit {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3ddc84;
+  text-align: center;
+}
+
+.buyHit.buyAction {
+  color: #ffcd5c;
+}
+
+.buyPickup {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #9aa0a6;
+  text-align: center;
+}

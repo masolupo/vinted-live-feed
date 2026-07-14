@@ -1,0 +1,108 @@
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  height: 100vh;
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.accountDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Human-readable summary of the active filter (e.g. "Electronics › Video games"). */
+.summary {
+  flex-shrink: 0;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* The only scrolling area: the list of cards. */
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* room for the scrollbar, so it doesn't cover the cards */
+  padding-right: 6px;
+  /* Anti-jump handled manually in useFeed: disable the browser's native one
+     on THIS container, otherwise the two stack up and it sometimes jumps. */
+  overflow-anchor: none;
+}
+
+.grid {
+  display: grid;
+  /* The columns (grid-template-columns) are set inline by page.tsx,
+     so just change COLUMNS there to get 2, 4, etc. */
+  gap: var(--gap);
+}
+
+/* Empty leading cell when the number of cards is odd: it takes its own
+   place in the grid without showing anything. */
+.spacer {
+  visibility: hidden;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 15px;
+}
